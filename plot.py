@@ -12,6 +12,7 @@ data.update(data.s_asleep_time / 3600)
 data.update(data.s_duration / 3600)
 data.update(data.m_inactive_time / 3600)
 data.update(data.m_active_time / 3600)
+data.update(data.m_lcit / 3600)
 
 # line graph for sleeping and waking times
 fig, ax = plt.subplots()
@@ -53,11 +54,11 @@ plt.show()
 
 # line graph for 
 fig, ax = plt.subplots()
-ax.plot(np.arange(len(data.DATE)), data.m_inactive_time, 'o-', color='b', label='Inactive')
-ax.plot(np.arange(len(data.DATE)), data.m_lcit, 'o-', color='r', label='lcit')
+ax.plot(np.arange(len(data.DATE)), data.m_inactive_time, 'o-', color='b', label='Total inactive time')
+ax.plot(np.arange(len(data.DATE)), data.m_lcit, 'o-', color='r', label='Longest consecutive inactive time')
 legend = ax.legend(loc='upper right', shadow=True)
 plt.xticks(range(0, len(data.DATE), 10), ['{0}/{1}'.format(str(date)[4:6], str(date)[6:]) for date in list(data.DATE.loc[range(0, len(data.DATE), 10)])], rotation=40)
 plt.xlabel('Date')
-plt.ylabel('Hours from midnight')
-plt.title('Sleeping & Waking Times', fontsize=18)
+plt.ylabel('Inactive time (hours)')
+plt.title('Total inactive time vs. Longest consecutive inactive time', fontsize=18)
 plt.show()
